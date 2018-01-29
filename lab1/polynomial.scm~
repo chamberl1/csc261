@@ -1,0 +1,20 @@
+;; Lab: Recalling Scheme
+;; CSC 261 
+;;
+;; File
+;;   polynomial.scm
+;;
+;; Summary
+;;   A collection of routines finding solutions to search space problem
+;;
+;; Provides
+;;   (search start-state problem enqueue heuristic)
+;;   (breadth-first-search start-state problem)
+;;   (depth-first-search start-state problem)
+;;   (uniform-cost-search start-state problem)
+
+
+(define right-section
+  (lambda (proc right)
+    (lambda (left)
+      (proc left right))))
