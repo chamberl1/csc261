@@ -13,6 +13,13 @@
 ;;   (depth-first-search start-state problem)
 ;;   (uniform-cost-search start-state problem)
 
+
+
+(define left-section
+  (lambda (proc left)
+    (lambda (right)
+      (proc left right))))
+
 ;; Procedure:
 ;;   right-section
 ;; Parameters:
@@ -65,10 +72,41 @@
     (lambda (x)
       (* c (expt x n)))))
 
-(define polynomial-derivative-coeffs
-  (lambda (lst)
-    (
+;; Purpose:
+;;   to create a function that runs a paraticular polynomial function
+;;   given a list of coefficients
+;; Preconditions:
+;;   coeffs must be a list of real numbers starting with the coefficient for x^0
+;;   all the way up to x^n, where n is the list length - 1
+;; Postconditions:
+;;   returns the polynomial function that takes a single number and runs the polynomial with the
+;;   given coefficients
+(define polynomial
+  (lambda (coeffs)
+    (lambda (x)
+      (let f ((lst coeffs) (ret '()) (i 0))
+        (if [null? lst]
+            [apply + ret]
+            [f (cdr lst)
+               (cons (* (car lst) (expt x i)) ret)
+               (+ i 1)])))))
 
+
+;; Purpose:
+;;   to find the coefficients of the derivative of a polynomial function
+;; Preconditions:
+;;   coeffs must be a list of real numbers starting with the coefficient for x^0
+;;   all the way up to x^n, where n is the list length - 1
+;; Postconditions:
+;;   returns a list of coefficients where each new coefficient is c*n
+;;   where n was the exponent of that term
+(define polynomial-derivative-coeffs
+  (lambda (coeffs)
+      (let f ((lst (cdr coeffs)) (i 1))
+        (cond
+          [(null? lst) '()]
+          [else (cons (* i (car lst)) (f (cdr lst)
+               (+ i 1)))]))))
 
 (define lst1 '(1 2 3 4))
 (define lst2 '(4 5 6 7))
