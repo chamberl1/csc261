@@ -8,7 +8,6 @@
 ;;   A series of tests for functions in polynomial.scm
 ;;
  
-
 (load "polynomial.scm")
 
 ;; Procedure: right-section
@@ -92,8 +91,36 @@
 (define expt3 (nest (r-s expt 3) 3))
 (display "\n(expt3 5) =")
 (display (expt3 5))
+(display "\n(expt3 1) =")
+(display (expt3 1))
+(display "\n(expt3 2) =")
+(display (expt3 2))
+(display "\n(define cdddddr (nest cdr 5))")
+(define cdddddr (nest cdr 5))
+(display "\n(cdddddr '( 1 2 3 4 5 6 7)) =")
+(display (cdddddr '( 1 2 3 4 5 6 7)))
 
+;; Procedure: polynomial-deriv
+(display "\nTesting polynomial-deriv")
+(display "\n(define 3-cubic (polynomial-deriv (list 1 0 11 -23) 3)) =")
+(define 3-cubic (polynomial-deriv (list 1 0 11 -23) 3))
+(display "\n(3-cubic 3) = ")
+(display (3-cubic 3))
+(display "\n(3-cubic 1) = ")
+(display (3-cubic 1))
+(display "\n(define 3-func (polynomial-deriv (list 1 0 11 -23 34 5 2 7) 3)) =")
+(define 3-cubic (polynomial-deriv (list 1 0 11 -23 34 5 2 7) 3))
+(display "\n(3-func 3) = ")
+(display (3-cubic 3))
+(display "\n(3-func 1) = ")
+(display (3-cubic 1))
 
-
-
+;; Procedure: non-zero-coefficients
+(display "\nTesting non-zero-coefficients")
+(display "\n(non-zero-coefficients (list 8 9 7 0 2 4 0 0)) =")
+(display (non-zero-coefficients (list 8 9 7 0 2 4 0 0)))
+(display "\n(non-zero-coefficients (list 0 1 0 1)) =")
+(display (non-zero-coefficients (list 0 1 0 1)))
+(display "\n(non-zero-coefficients (list 0 0 0 0)) =")
+(display (non-zero-coefficients (list 0 0 0 0)))
 
