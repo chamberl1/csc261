@@ -1,6 +1,7 @@
 (load "problem.scm")
 (load "node.scm")
 (load "8puzzle.scm")
+(load "search.scm")
 
 (define eight-puzzle (eight-puzzle-problem))
 

@@ -55,15 +55,16 @@
 
 ;; YOUR SEARCH HERE
 (define search
-  (lamdba (start-state problem enqueue heuristic)
-       (let* f ((frontier (list (node-init start-state heuristic)))
+  (lambda (start-state problem enqueue heuristic)
+       (let f ((frontier (list (node-init start-state heuristic)))
                (num-expansions 0))
          (cond
            [(null? frontier) #f]
-           [((problem-goal? problem) (car frontier))
-            (append (node-extract-actions (car frontier)) (list num-expansions))]
-           [f((enqueue ((problem-successor-fun problem) (car frontier))) (cdr frontier))
-             (+ 1 num-expansions)]))))
+           [((problem-goal? problem) (node-state (car frontier)))
+            (cons (node-extract-actions (car frontier)) (list num-expansions))]
+           [else (f (enqueue (problem-expand-node problem (car frontier) heuristic)
+                             (cdr frontier))
+             (+ 1 num-expansions))]))))
            
          
 
@@ -90,8 +91,17 @@
 ;;   solution is a list of actions that can be taken to reach a goal
 ;;   state from start-state, or #f if no solution could be found
 ;;   (length solution) is minimal for start-state
+(define breadth-first-search
+  (lambda (start-state problem)
+    (search
+     start-state
+     problem
+     ;; Enqueueing procedure
+     (lambda (new-nodes frontier) 
+       (append frontier new-nodes))
+     ;; Heuristic procedure -- always produces zero since BFS is uninformed
+     (lambda (state) 0))))
 
-;; YOUR BFS SEARCH HERE
 
 ;;
 ;; Procedure
@@ -149,8 +159,17 @@
 ;;   solution is a list of actions that can be taken to reach a goal
 ;;   state from start-state, or #f if no solution could be found
 ;;   (length solution) <= limit
+(define depth-limited-search
+  (lambda (start-state problem limit)
+    (search
+     start-state
+     problem
+     ;; Enqueueing procedure
+     (lambda (new-nodes frontier)         
+       (append frontier (filter (section <= (node-depth <>) limit) new-nodes)))
+     ;; Heuristic procedure -- always produces zero since DLS is uninformed
+     (lambda (state) 0))))
 
-;; YOUR DLS HERE
 
 ;;
 ;; Procedure
