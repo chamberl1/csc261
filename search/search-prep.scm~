@@ -1,0 +1,3 @@
+(load "problem.scm")
+(load "node.scm")
+(load "8puzzle.scm") 
