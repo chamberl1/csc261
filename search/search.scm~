@@ -54,18 +54,7 @@
 ;;   problem-expand-node is called.
 
 ;; YOUR SEARCH HERE
-(define search
-  (lamdba (start-state problem enqueue heuristic)
-       (let* f ((frontier (list (node-init start-state heuristic)))
-               (num-expansions 0))
-         (cond
-           [(null? frontier) #f]
-           [((problem-goal? problem) (car frontier))
-            (append (node-extract-actions (car frontier)) (list num-expansions))]
-           [f((enqueue ((problem-successor-fun problem) (car frontier))) (cdr frontier))
-             (+ 1 num-expansions)]))))
-           
-         
+
 
 
 ;;
