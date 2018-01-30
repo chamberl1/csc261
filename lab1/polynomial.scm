@@ -19,6 +19,8 @@
   (lambda (proc left)
     (lambda (right)
       (proc left right))))
+(define l-s left-section)
+
 
 ;; Procedure:
 ;;   right-section
@@ -36,6 +38,7 @@
   (lambda (proc right)
     (lambda (left)
       (proc left right))))
+(define r-s right-section)
 
 
 ;; Purpose:
@@ -61,6 +64,7 @@
       (if (< i 0) lst
          (f (cons i lst) (- i 1) )))))
 
+
 ;; Purpose:
 ;;   to create a function that runs a paraticular polynomial function
 ;; Preconditions:
@@ -71,6 +75,7 @@
   (lambda (c n)
     (lambda (x)
       (* c (expt x n)))))
+
 
 ;; Purpose:
 ;;   to create a function that runs a paraticular polynomial function
@@ -108,6 +113,37 @@
           [else (cons (* i (car lst)) (f (cdr lst)
                (+ i 1)))]))))
 
-(define lst1 '(1 2 3 4))
-(define lst2 '(4 5 6 7))
+
+;; Purpose:
+;;   to create multiple compositions of a function
+;; Preconditions:
+;;   num must be an integer greater than 1
+;; Postconditions:
+;;   return a function that is the composition of doing proc num times
+(define nest
+  (lambda (proc num)
+    (cond
+      [(>= 1 num) proc]
+      [(compose proc (nest  proc (- num 1)))])))
+
+
+;; Purpose:
+;;   to create a function that runs a multiple derivative with given coefficients
+;; Preconditions:
+;;   num must be an integer greater than 1,
+;;   coeffs must be a list of real numbers
+;; Postconditions:
+;;   returns a function that runs the nth derivative of the polynomial with coeffs as coefficients
+(define polynomial-deriv
+  (lambda (coeffs n)
+    (lambda (x)
+        ((polynomial
+         ((nest polynomial-derivative-coeffs n) coeffs))
+         x))))
+      
+
+
+
+
+    
      
