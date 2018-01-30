@@ -8,10 +8,11 @@
 ;;   A collection of routines finding solutions to search space problem
 ;;
 ;; Provides
-;;   (search start-state problem enqueue heuristic)
-;;   (breadth-first-search start-state problem)
-;;   (depth-first-search start-state problem)
-;;   (uniform-cost-search start-state problem)
+;;   (left-section and right-section)
+;;   (dot-product function)
+;;   (iota function)
+;;   (nesting functions function)
+;;   (all the polynomial functions)
 
 
 ;; Purpose:
