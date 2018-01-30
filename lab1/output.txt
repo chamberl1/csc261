@@ -1,0 +1,12 @@
+Script started on Mon 29 Jan 2018 10:44:46 PM CST
+chamberl1@delamain:lab1$ export PS1=[K="$ "
+$ mzscheme -l lang/plt-pretty-big-text.ss 0f[K[K-f driv[K[K[K[Kpolyno[K[K[K[K[K[Ktest-polynomial.scm
+Testing right section
+Testing dot-product
+Testing iota
+Testing polynomial-term
+Testing polynomial
+$ exit
+exit
+
+Script done on Mon 29 Jan 2018 10:45:46 PM CST

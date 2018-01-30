@@ -5,7 +5,7 @@
 ;;   polynomial.scm
 ;;
 ;; Summary
-;;   A collection of routines finding solutions to search space problem
+;;   A collection of basic scheme functions, most regarding polynomials
 ;;
 ;; Provides
 ;;   (left-section and right-section)
