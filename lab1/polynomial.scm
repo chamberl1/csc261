@@ -14,7 +14,13 @@
 ;;   (uniform-cost-search start-state problem)
 
 
-
+;; Purpose:
+;;   to create a function that runs proc with fixed left value
+;; Preconditions:
+;;   proc must be a function that takes two parameters
+;;   right must be a valid value for proc's left parameter
+;; Postconditions:
+;;   returns a function that runs proc with the given left value
 (define left-section
   (lambda (proc left)
     (lambda (right)
@@ -22,11 +28,7 @@
 (define l-s left-section)
 
 
-;; Procedure:
-;;   right-section
-;; Parameters:
-;;   proc, a binary procedure
-;;   right, a value
+
 ;; Purpose:
 ;;   to create a function that runs proc with fixed right value
 ;; Preconditions:
@@ -131,7 +133,7 @@
 ;;   to create a function that runs a multiple derivative with given coefficients
 ;; Preconditions:
 ;;   num must be an integer greater than 1,
-;;   coeffs must be a list of real numbers
+;;   coeffs must be a list of real numbers, the list of coefficients in ascending order
 ;; Postconditions:
 ;;   returns a function that runs the nth derivative of the polynomial with coeffs as coefficients
 (define polynomial-deriv
@@ -141,8 +143,19 @@
          ((nest polynomial-derivative-coeffs n) coeffs))
          x))))
       
-
-
+;; Purpose:
+;;   to find which terms of a polynomial are present
+;; Preconditions:
+;;   coeffs must be a list of real numbers, the list of coefficients in ascending order
+;; Postconditions:
+;;   returns a list of which indices of coefficients in a polynomial are non-zero
+(define non-zero-coefficients
+  (lambda (coeffs)
+    (let f ((lst coeffs) (i 0))
+      (cond
+        [(null? lst) '()]
+        [(zero? (car lst)) (f (cdr lst) (+ i 1))]
+        [else (cons i (f (cdr lst) (+ i 1)))]))))
 
 
     
