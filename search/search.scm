@@ -165,8 +165,11 @@
      start-state
      problem
      ;; Enqueueing procedure
-     (lambda (new-nodes frontier)         
-       (append frontier (filter (section <= (node-depth <>) limit) new-nodes)))
+     (lambda (new-nodes frontier)
+       (let ((limit-check
+              (lambda (node)
+                (<= (node-depth node)  limit))))
+       (append frontier (filter limit-check new-nodes))))
      ;; Heuristic procedure -- always produces zero since DLS is uninformed
      (lambda (state) 0))))
 
