@@ -149,8 +149,8 @@
 ;;   limit, an integer
 ;;
 ;; Produces
-;;   result, a list
-;;
+;;   result, a list 
+;;   
 ;; Preconditions
 ;;   limit >= 0
 ;;
@@ -230,4 +230,36 @@
                  (insert remaining (cdr queue)))))))) ;;  into rest of queue
      ;; Heuristic function
      (lambda (state) 0)))) ;; No heuristic function to speak of
+
+
+
+
+;;
+;; Procedure
+;;   iterative-deepening-search
+;;
+;; Purpose
+;;   Find a solution to a problem using iterative deepening search
+;;
+;; Parameters
+;;   start-state, a value
+;;   problem, a problem
+;;
+;; Produces
+;;   result, a list
+;;
+;; Preconditions
+;;
+;; Postconditions
+;;   result is a list of the form (solution num-expansions), where
+;;   solution is a list of actions that can be taken to reach a goal
+;;   state from start-state.
+(define iterative-deepening-search
+  (lambda (start-value problem)
+    (let dls[(limit 1)
+             (result (depth-limited-search start-value problem 0))]
+      (if result 
+          result
+          (dls (+ limit 1) (depth-limited-search start-value problem limit))))))
+      
 
