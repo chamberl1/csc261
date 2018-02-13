@@ -176,25 +176,25 @@
      ;; Enqueuing procedure
      (lambda (new-nodes sorted-queue)
        ;; Sort the new new nodes according to path cost
-       (let ((sorted-children (list-keyed-insertion-sort
+       (let ([sorted-children (list-keyed-insertion-sort
 			       new-nodes
 			       node-path-cost
-			       <=)))
+			       <=)])
 	 ;; Insert the new nodes efficiently into the already-sorted frontier
-	 (let insert ((remaining sorted-children) ;; Items to insert
-		      (queue sorted-queue))       ;; List of sorted nodes
+	 (let insert ([remaining sorted-children] ;; Items to insert
+		      [queue sorted-queue])       ;; List of sorted nodes
 	   (cond
-	    ((null? remaining) ;; Nothing left to insert?
-	     queue) ;; Return the queue (which is sorted)
-	    ((null? queue) ;; If the queue is empty, we can simply return the
-           remaining)      ;; remaining items, because they're already sorted
-          ((< (node-path-cost (car remaining))  ;; Compare path costs
+	    [(null? remaining) ;; Nothing left to insert?
+	     queue] ;; Return the queue (which is sorted)
+	    [(null? queue) ;; If the queue is empty, we can simply return the
+             remaining]      ;; remaining items, because they're already sorted
+            [(< (node-path-cost (car remaining))  ;; Compare path costs
               (node-path-cost (car queue)))  
-           (cons (car remaining) ;; List of the first remaining item and the
-                 (insert (cdr remaining) queue))) ;;  rest inserted into queue
-          (else
-           (cons (car queue) ;; List of the queue front and insert remaining
-                 (insert remaining (cdr queue)))))))) ;;  into rest of queue
+             (cons (car remaining) ;; List of the first remaining item and the
+                   (insert (cdr remaining) queue))] ;;  rest inserted into queue
+            [else
+             (cons (car queue) ;; List of the queue front and insert remaining
+                   (insert remaining (cdr queue)))])))) ;;  into rest of queue
      ;; Heuristic function
      (lambda (state) 0)))) ;; No heuristic function to speak of
 

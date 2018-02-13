@@ -1,0 +1,25 @@
+
+
+(require "jump.scm")
+
+(define jump-heuristic
+  (lambda (jump-state)
+    (let ([best-estimate (series-step jump-state)])
+      (cond
+        ((> (caddr jump-state)  (add1 best-estimate))
+          1000000000000000)
+        ;;((> (caddr jump-state)  best-estimate)
+         ;;(sub1 best-estimate))
+        ((< (caddr jump-state)  best-estimate)
+         (add1 best-estimate))
+         (else
+          best-estimate)))))
+
+
+(define series-step
+  (lambda (jump-state)
+    (let* ([constant
+           (* 2 ( - (car jump-state) (cadr jump-state)))]
+           [discriminant (- 1 (* -4 constant))])
+     (ceiling (/ (sub1 (sqrt discriminant)) 2))))) 
+      

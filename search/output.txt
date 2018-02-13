@@ -1,0 +1,85 @@
+Script started on Mon 05 Feb 2018 09:43:40 PM CST
+$ mzscheme -l lang/plt-pretty-big-text.ss -f driver.scm
+Testing search 
+For state 1
+((1 4 2) (3 7 5) (6 x 8))
+ Using breadth-first enqueue function, the result is:
+((up up left) 17)
+ Test pass!
+Using depth-limit enqueue function with a limit of 3, the result is:
+((up up left) 17)
+ Test pass!
+For state 2
+((3 1 2) (4 5 x) (6 7 8))
+ Using breadth-first enqueue function, the result is:
+((left left up) 9)
+ Test pass!
+For state 3
+((1 2 5) (3 x 4) (6 7 8))
+ Using breadth-first enqueue function, the result is:
+((right up left left) 25)
+ Test pass!
+Testing breadth first search
+For state 1
+((1 4 2) (3 7 5) (6 x 8))
+ After search
+((up up left) 17)
+ Test pass!
+For state 2
+((3 1 2) (4 5 x) (6 7 8))
+ After search
+((left left up) 9)
+ Test pass!
+Testing depth first search
+For state 2
+((3 1 2) (4 5 x) (6 7 8))
+ After search
+((left left up) 3)
+ Test pass!
+For state 3
+((1 2 5) (3 x 4) (6 7 8))
+ After search
+((left up right right down left left up right right down left left up right right down left left up right right down left left up) 26)
+ Test pass!
+Testing depth limited search
+For state 1
+((1 4 2) (3 7 5) (6 x 8))
+ After search with a limit of 2
+(#f 9)
+ After search with a limit of 3
+((up up left) 17)
+ Test pass!
+Testing depth limited search
+For state 3
+((1 2 5) (3 x 4) (6 7 8))
+ After search with a limit of 3
+(#f 21)
+ After search with a limit of 4
+((right up left left) 25)
+ Test pass!
+Testing uniform cost search 
+For state 1
+((1 4 2) (3 7 5) (6 x 8))
+ After search
+((up up left) 10)
+ Test pass!
+For state 2
+((3 1 2) (4 5 x) (6 7 8))
+ After search
+((left left up) 18)
+ Test pass!
+Testing iterative deepening search
+For state 1
+((1 4 2) (3 7 5) (6 x 8))
+ After search
+((left left up) 23)
+ Test pass!
+For state 3
+((1 2 5) (3 x 4) (6 7 8))
+ After search
+((right up left left) 65)
+ Test pass!
+$ exit
+exit
+
+Script done on Mon 05 Feb 2018 09:44:03 PM CST

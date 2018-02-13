@@ -1,0 +1,39 @@
+Script started on Mon 12 Feb 2018 10:31:46 PM CST
+$ mzscheme -l lang/plt-pretty-big-text.ss -f driver.scm[C
+
+heuristic function on state: (10 0 0) expected output: 5
+ actual:5
+heuristic function on state: (10 0 4) expected output: 4
+ actual:4
+heuristic function on state: (10 2 2) expected output: 5
+ actual:5.0
+heuristic function on state: (10 2 1) expected output: 5
+ actual:5.0
+heuristic function on state: (10 2 4) expected output: 4
+ actual:4.0
+heuristic function on state: (10 7 5) expected output: inf
+ actual:+inf.0
+heuristic function on state: (5 0 0) expected output: 4
+ actual:4.0
+heuristic function on state: (5 5 5) expected output: inf
+ actual:+inf.0
+
+A* search on course length 10
+((1 3 3 2 1) 5)
+1 + 3 + 3 + 2 + 1 = 10, and all the moves are valid so it is  a real solution
+BFS returns same length solution:
+((1 3 3 2 1) 44)
+
+A* search on course length 20
+((1 3 5 4 3 2 1 1) 10)
+1 + 3 + 5 + 4 + 3 + 2 + 1 + 1 = 20, and all the moves are valid so it is  a real solution
+BFS returns same length solution:
+((1 3 5 4 3 2 1 1) 1620)
+
+A* search on course length 200
+((1 3 5 7 9 11 13 15 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1) 242)
+ this sum equals 200, and all the moves are valid so it is  a real solution
+$ exit
+exit
+
+Script done on Mon 12 Feb 2018 10:32:54 PM CST

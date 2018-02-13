@@ -1,0 +1,13 @@
+References:
+  Written/online sources used:
+  lab 2 and preparation for lab 2 in AI:
+    http://www.cs.grinnell.edu/~weinman/courses/CSC261/2018S/labs/uninformed-search.html
+    http://www.cs.grinnell.edu/~weinman/courses/CSC261/2018S/assignments/search.pdf
+    
+  Help obtained:
+    N/A
+Academic honesty certification:
+  Our initials below confirm that the above list of sources
+  is complete AND that I/we have not talked to anyone else
+  (e.g., CSC 261 students) about the solution to this problem
+  Initials:  SZ, MSC

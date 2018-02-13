@@ -1,3 +1,5 @@
+;; Lab: Uninformed Search
+;; CSC 261
 ;;
 ;; File
 ;;   search.scm
@@ -56,13 +58,13 @@
 ;; YOUR SEARCH HERE
 (define search
   (lambda (start-state problem enqueue heuristic)
-       (let f ((frontier (list (node-init start-state heuristic)))
+       (let search-helper ((frontier (list (node-init start-state heuristic)))
                (num-expansions 0))
          (cond
-           [(null? frontier) #f]
+           [(null? frontier) (list #f num-expansions)]
            [((problem-goal? problem) (node-state (car frontier)))
             (cons (node-extract-actions (car frontier)) (list num-expansions))]
-           [else (f (enqueue (problem-expand-node problem (car frontier) heuristic)
+           [else (search-helper (enqueue (problem-expand-node problem (car frontier) heuristic)
                              (cdr frontier))
              (+ 1 num-expansions))]))))
            
@@ -256,10 +258,12 @@
 ;;   state from start-state.
 (define iterative-deepening-search
   (lambda (start-value problem)
-    (let dls[(limit 1)
+    (let dls[(limit 0)
+             (expansions 0)
              (result (depth-limited-search start-value problem 0))]
-      (if result 
-          result
-          (dls (+ limit 1) (depth-limited-search start-value problem limit))))))
+      (if (car result) 
+          (cons (car result) (list (+ expansions (cadr result))))
+          (dls (+ limit 1) (+ expansions (cadr result))
+               (depth-limited-search start-value problem (+ 1 limit)))))))
       
 

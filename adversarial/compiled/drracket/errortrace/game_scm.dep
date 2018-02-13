@@ -1,0 +1,1 @@
+("6.7" ("b2b7d8818269771e801681f0a4fa75da8bc29bf8" . "953690e68553142e2ab5b2f152a883829f9f4c43") #"/home/chamberl1/csc261/adversarial/general.scm" (collects #"errortrace" #"errortrace-key.rkt") (collects #"lang" #"plt-pretty-big.rkt") (collects #"mzscheme" #"main.rkt"))
