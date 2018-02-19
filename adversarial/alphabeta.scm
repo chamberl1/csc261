@@ -106,7 +106,54 @@
 ;; Postconditions
 ;;   (car action-value) is a valid, optimal action from the state
 ;;      (cdr action-value) is the value of the action
-                
+   (define alpha-beta-max-value
+  (lambda (game state alpha beta depth plies evaluation-fun)
+
+    (cond 
+     [(or (= depth plies)                 ; Maximum depth reached
+	  ((game-terminal? game) state))  ; We are given a terminal state
+
+      ;; Since this state is terminal or cutoff , there is no action to take
+      ;; We return the value as the evaluation of the state
+      (cons null (evaluation-fun state))] ; action-value pair
+     
+     [else
+      ;; In this case, we do not have a terminal state, therefore
+      ;; successors ought not be empty
+  
+      ;; Loop to find find maximimum value and the action giving it
+      
+      (let loop ([successors ((game-successors-fun game) state)]
+		 ; successors is a list of (action . state) pairs
+		 [argmax null]  ; maximizing action
+		 [maxval null]) ; maximal value
+
+	(if (null? successors)   ; No more moves
+
+	    (if (null? maxval)   ; No successors at all! Error
+		(error "Game produced no successors from non-terminal state" 
+		       state)
+		(cons argmax maxval)) ; Return the best action value pair
+
+	    (let* ([action-value (cutoff-min-value 
+				  game 
+				  (cdar successors) ;  successor state
+				  depth             ; same depth (ply)
+				  plies             ; same cutoff
+				  evaluation-fun)]
+		   [val (cdr action-value)]) ; value of the action-value pair
+	      
+	      (cond 
+	       [(or (null? argmax)     ; haven't calculated any values yet, or
+		    (> val maxval))    ; this move's value is an improvement
+		(loop (cdr successors)   ; remaining possibilities
+		      (caar successors)  ; new argmax
+		      val)]              ; new maxval
+	       [else
+		(loop (cdr successors)   ; remaining possibilities
+		      argmax             ; same argmax
+		      maxval)]))))])))   ; same maxval             
+
 
     
 ;;
@@ -135,7 +182,52 @@
 ;; Postconditions
 ;;   (car action-value) is a valid, optimal action from the state
 ;;   (cdr action-value) is the value of the action
+(define alpha-beta-min-value
+  (lambda (game state alpha beta depth plies evaluation-fun)
+    
+    (cond
+     [(or (= depth plies)                 ; Maximum depth reached
+	  ((game-terminal? game) state))  ; We are given a terminal state
 
+      ;; Since this state is terminal, there is no action to take
+      ;; We return the value as the utility of the state
+      (cons null (evaluation-fun state))] ; action-value pair
+     
+     [else
+      ;; In this case, we do not have a terminal state, therefore
+      ;; successors ought not be empty
+      
+      ;; Loop to find find minimum value and the action giving it
+      
+      (let loop ([successors ((game-successors-fun game) state)]
+			     ; successors is a list of (action . state) pairs
+		 [argmin null]  ; minimizing action
+		 [minval null]) ; minimal value
+		 
+	(if (null? successors)   ; No more moves
 
+	    (if (null? minval)   ; No successors at all! Error
+		(error "Game produced no successors from non-terminal state" 
+		       state)
+                (cons argmin minval)) ; Return the best action value pair
+
+	    (let* ([action-value (cutoff-max-value 
+				  game 
+				  (cdar successors) ; next successor state
+				  (+ 1 depth)       ; increment depth (next ply)
+				  plies             ; same cutoff
+				  evaluation-fun)]
+		   [val (cdr action-value)]) ; value of the action-value pair
+	      
+	      (cond 
+	       [(or (null? argmin)     ; haven't calculated any values yet, or
+		    (< val minval))    ; this move's value is an improvement
+		(loop (cdr successors)   ; remaining possibilities
+		      (caar successors)  ; new argmin
+		      val)]              ; new minval
+	       [else
+		(loop (cdr successors)   ; remaining possibilities
+		      argmin             ; same argmin
+		      minval)]))))])))   ; same minval
 
 ) ; module
