@@ -1,0 +1,30 @@
+;; Lab 9:
+;;   Decision Tree Learning
+;;
+;; File
+;;   driver.scm
+;;
+;; Authors
+;;   Anonymous students
+;;
+;; Summary
+;;   Testing of decision-tree learner
+;;
+;; Provides
+;;
+
+(load "mushroom.scm")
+(load "restaurant.scm")
+(load "dtree.scm")    
+(load "learning.scm")
+(load "general.scm")
+
+; Load the attributes list for mushrooms
+(define mushroom-attributes
+  (load-mushroom-attributes "mushroom-attribs.txt"))
+; Load all the mushroom examples (labels with attribute association lists)
+(define mushroom-examples
+  (load-mushroom-examples "mushrooms.txt" mushroom-attributes))
+
+
+(print (decision-tree-learning mushroom-examples mushroom-attributes #t))

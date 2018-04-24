@@ -1,0 +1,37 @@
+Script started on Tue 06 Mar 2018 11:39:19 PM CST
+chamberl1@rosser:prolog$ export PS1="$ "
+$ prolog
+Welcome to SWI-Prolog (Multi-threaded, 64 bits, Version 7.2.3)
+Copyright (c) 1990-2015 University of Amsterdam, VU Amsterdam
+SWI-Prolog comes with ABSOLUTELY NO WARRANTY. This is free software,
+and you are welcome to redistribute it under certain conditions.
+Please visit http://www.swi-prolog.org for details.
+
+For help, use ?- help(Topic). or ?- apropos(Word).
+
+?- [grandpa].
+[1mtrue.[0m
+
+?- grandfather(n,n).
+[1mtrue [0m[1m.[0m
+
+?- soninlaw(f,n).
+[1mtrue [0m[1m.[0m
+
+?- mother(d,n).
+[1mtrue.[0m
+
+?- uncle(s1,n).
+[1mtrue [0m[1m.[0m
+
+?- 
+WARNING: By typing Control-C twice, you have forced an asynchronous
+WARNING: interrupt.  Your only SAFE operation are: c(ontinue), p(id),
+WARNING: s(stack) and e(xit).  Notably a(abort) often works, but
+WARNING: leaves the system in an UNSTABLE state
+
+Action (h for help) ? exit
+$ exit
+exit
+
+Script done on Tue 06 Mar 2018 11:40:10 PM CST

@@ -1,0 +1,14 @@
+Script started on Wed 28 Feb 2018 11:53:05 PM CST
+chamberl1@delamain:propositional$ export PS1="$ "
+$ export PS1="$ "[C[C[C[Cit[K[C[Cmzscheme -l lang/plt-pretty-big-text.ss -f problems.scm
+Unicorn Problem
+
+Entails magical?
+#t
+Entails horned?
+#t
+Entails mythical
+#f$ exit
+exit
+
+Script done on Wed 28 Feb 2018 11:53:25 PM CST

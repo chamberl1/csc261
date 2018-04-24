@@ -1,0 +1,18 @@
+ References:
+  Written/online sources used:
+    Lab: Decision Trees
+      http://www.cs.grinnell.edu/~weinman/courses/CSC261/2018S/labs/decision-trees.html
+    Procedures written by Jerod Weinman
+      http://www.cs.grinnell.edu/~weinman/courses/CSC261/2018S/assignments/decision-tree-learning.pdf
+    decision-tree-learning pseudocode algorithm
+      Figure 18.5 AIMA p 702
+      Lecture Notes 4/9/18 by Prof Weinman
+
+  Help obtained:
+    NONE
+
+Academic honesty certification:
+  Our initials below confirm that the above list of sources
+  is complete AND that I/we have not talked to anyone else
+  (e.g., CSC 261 students) about the solution to this problem
+  Initials:  MC, CB

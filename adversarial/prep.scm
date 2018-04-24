@@ -6,16 +6,18 @@
 (require "mancala-player.scm") 
 (require "cutoff-minimax.scm")
 (require "evaluation.scm")
+(require "alphabeta.scm")
 
 
 
 
 (define barranca (make-barranca-game 4 7))
-(define barranca-player1-utility (barranca-utility-fun #t 7))
+(define barranca-player1 (make-alpha-beta-player barranca 2 (barranca-utility-fun #t 7)))
+(define barranca-player2 (make-alpha-beta-player barranca 2 (barranca-utility-fun #f 7)))
 
 (define ttt (make-tictactoe-game))
-(define ttt-smart-player1 (make-minimax-player ttt (tictactoe-utility-fun #t))) 
-(define ttt-smart-player2 (make-minimax-player ttt (tictactoe-utility-fun #f))) 
+(define ttt-smart-player1 (make-alpha-beta-player ttt 2 (tictactoe-utility-fun #t))) 
+(define ttt-smart-player2 (make-alpha-beta-player ttt 2 (tictactoe-utility-fun #f))) 
 
 (define ttt-lazy-player 
    (lambda (state)
@@ -25,7 +27,7 @@
 (define mancala-player1-eval (simple-mancala-eval #t))
 
 (define mancala-player1 
-  (make-cutoff-minimax-player mancala 1 mancala-player1-eval))
+  (make-cutoff-minimax-player mancala 4 mancala-player1-eval))
 
 
 (define mancala-lazy-player
@@ -35,4 +37,4 @@
 (define mancala-player2-eval (best-mancala-eval #f))
 
 (define mancala-player2 
-  (make-cutoff-minimax-player mancala 3 mancala-player2-eval))
+  (make-cutoff-minimax-player mancala 4 mancala-player2-eval))

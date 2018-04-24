@@ -1,0 +1,8 @@
+(require "weinman-enumeration.scm")
+
+
+;; Part A: Unicorns!
+
+(define unicorn1 (list '<=> 'Mythical Immortal))
+(define unicorn2 (list '=> (list 'or 'Immortal 'Mammal) 'Horned))
+(define unicorn3 (list '=> 'Horned 'Magical))

@@ -93,9 +93,9 @@
   (lambda (player)
     (lambda (state)
       (cond 
-       ;((not (tictactoe-terminal? state)) ; Plays remain: value 0
-        ;(display "WARNING! Utility function applied to non-terminal state.")
-        ;0)
+       ((not (tictactoe-terminal? state)) ; Plays remain: value 0
+        (display "WARNING! Utility function applied to non-terminal state.")
+        0)
        ((tictactoe-win? player state) 
         1)
        ((tictactoe-win? (not player) state) 

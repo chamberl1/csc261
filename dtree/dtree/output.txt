@@ -1,0 +1,41 @@
+Script started on Mon 16 Apr 2018 08:34:04 PM CDT
+dtree$ export PS1="$ "
+$ mzscheme -l lang/plt-pretty-big-text.ss -f driver.scm
+Testing decision-tree-learning on mushrooms
+'("odor" (#\a . #\e) (#\l . #\e) (#\c . #\p) (#\y . #\p) (#\f . #\p) (#\m . #\p) (#\n "spore-print-color" (#\k . #\e) (#\n . #\e) (#\b . #\e) (#\h . #\e) (#\r . #\p) (#\o . #\e) (#\u . #\e) (#\w "habitat" (#\g . #\e) (#\l "cap-color" (#\n . #\e) (#\b . #\e) (#\c . #\e) (#\g . #\e) (#\r . #\e) (#\p . #\e) (#\u . #\e) (#\e . #\e) (#\w . #\p) (#\y . #\p)) (#\m . #\e) (#\p . #\e) (#\u . #\e) (#\w . #\e) (#\d "gill-size" (#\b . #\e) (#\n . #\p))) (#\y . #\e)) (#\p . #\p) (#\s . #\p))
+
+Testing decision-tree-learning on restaurants
+'("Pat" ("None" . #f) ("Some" . #t) ("Full" "Hun" (#t "Type" ("French" . #f) ("Thai" "Rain" (#t . #t) (#f . #f)) ("Burger" . #t) ("Italian" . #f)) (#f . #f)))
+
+
+
+Testing choose-attribute
+choose-attribute: "odor"
+
+information-gain: 
+cap-shape: 0.048796701935373776
+cap-surface: 0.028590232773774038
+cap-color: 0.03604928297620502
+bruises?: 0.192379485761221
+odor: 0.9060749773840014
+gill-attachment: 0.014165027250614637
+gill-spacing: 0.10088318399657159
+gill-size: 0.2301543751480467
+gill-color: 0.41697752341613226
+stalk-shape: 0.007516772569665431
+stalk-surface-above-ring: 0.28472559921848517
+stalk-surface-below-ring: 0.2718944733927461
+stalk-color-above-ring: 0.2538451734622402
+stalk-color-below-ring: 0.24141556652756746
+veil-type: 0.0
+veil-color: 0.023817016120918688
+ring-number: 0.038452669243088766
+ring-type: 0.3180215107935386
+spore-print-color: 0.4807049176849162
+population: 0.2019580190668534
+habitat: 0.15683360460509344
+ 'odor' has the highest information-gain value, thus it is the best attribute according to choose-attribute
+$ exit
+exit
+
+Script done on Mon 16 Apr 2018 08:34:49 PM CDT
