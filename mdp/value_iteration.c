@@ -18,6 +18,27 @@ value_iteration ( const mdp * p_mdp, double epsilon, double gamma,
                   double * utilities)
 {
   // Run value iteration!
+  double * utilities_prime = malloc ( sizeof(double) * p_mdp->numStates );
+  unsigned int state;
+  unsigned int loop_limit = p_mdp->numStates;
+  double delta = 0;
+  for (state=0; state < loop_limit; state++)
+    {
+      utilities_prime[state] = 0;
+    }
+  while (delta < (epsilon * ((1 - gamma) / gamma)))
+    {
+      for (state=0; state < loop_limit; state++)
+        {
+          unsigned int action;
+          for (action=0; action < p_mdp->numAvailableActions[state]; action++){
+            double eu = calc_eu(&p_mdp, state, &utilities, action);
+          }
+          calc_meu(p_mdp, state, utilities, &utilities_prime[state], action);
+          utilities_prime[state] = p_mdp->rewards[state] + (gamma * utilities_prime[state]);
+        }
+    }
+  
 } // value_iteration
 
 

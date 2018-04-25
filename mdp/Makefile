@@ -5,7 +5,7 @@ mdp: mdp.c mdp.h
 	${CC} ${CFLAGS} -c mdp.c
 
 start: mdp start.c
-	${CC} ${CFLAGS} -o start start.c mdp.o
+	${CC} ${CFLAGS} -o start start.c mdp.o utilities.o
 
 utilities: mdp utilities.c utilities.h
 	${CC} ${CFLAGS} -c utilities.c

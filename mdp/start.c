@@ -12,6 +12,7 @@
 #include <inttypes.h>
 
 #include "mdp.h"
+#include "utilities.h"
 
 
 
@@ -43,9 +44,11 @@ int main(int argc, char* argv[])
   
   unsigned int state; // Loop variable over states
   unsigned int action;
+  double * utilities = malloc ( sizeof(double) * p_mdp->numStates );
 
   for (state=0 ; state < p_mdp->numStates ; state++)
     {
+      utilities[state] = 1;
       printf("State %u: ", state);
        printf("[ %u ]", p_mdp->numAvailableActions[state]);
         
@@ -53,6 +56,10 @@ int main(int argc, char* argv[])
         {
           printf("%u ", p_mdp->actions[state][action]);
         }
+      double eu = 0;
+      unsigned int act = 2;
+      calc_meu(p_mdp, state, utilities, &eu, &act);
+      printf("eu is now %f",eu);
       printf("\n");
    
     }
